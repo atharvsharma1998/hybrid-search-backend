@@ -19,13 +19,30 @@ async function search(req, res) {
 
     const { query, vector } = req.body;
     console.log('calling search');
+        // Validate the request body
+        // if (!query || !vector) {
+        //     return res.status(400).json({ error: 'Both query and vector are required.' });
+        // }
 
+    // try {
+    //     const { results, timeTaken } = await searchService.hybridSearch(query, vector);
+    //     res.status(200).json({ results, timeTaken });
+    // } catch (error) {
+    //     console.error('Error during normal search:', error);
+    //     res.status(500).json({error: error.message });
+    // }
     try {
         const { results, timeTaken } = await searchService.hybridSearch(query, vector);
         res.status(200).json({ results, timeTaken });
     } catch (error) {
-        console.error('Error during normal search:', error);
-        res.status(500).json({error: error });
+        console.error('Error during search:', error);
+
+        // Handle specific Elasticsearch errors
+        if (error.meta && error.meta.statusCode === 400) {
+            res.status(400).json({ error: error.meta.body.error.reason });
+        } else {
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 }
 

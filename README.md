@@ -3,6 +3,11 @@
 The backend has been hosted over Vercel, so no setup is required by the user.
 
 
+### Technology Stack
+This project utilises Elasticsearch for its search capabilities, making it an excellent choice for building a scalable search backend without the need to develop complex indexing and search algorithms from scratch. Elasticsearch also offers powerful data ingestion pipelines and connectors, which can seamlessly integrate with existing backends like PostgreSQL, MongoDB, and other popular cloud databases.
+
+### Hybrid Search Implementation
+The hybrid search functionality combines full-text search with vector search (using k-NN). For ranking search results, the Reciprocal Rank Fusion (RRF) method is utilised. The api performs full text search on author, title and content  fields and vector search over vector_representation. Elasticsearch provides a comprehensive SDK that simplifies the implementation of these advanced search features. While it’s possible to build similar functionality using PostgreSQL, leveraging Elasticsearch’s built-in capabilities offers significant advantages in terms of development speed and flexibility.
 
 
 ### Backend Hosting and Setup

@@ -25,7 +25,7 @@ async function search(req, res) {
         res.status(200).json({ results, timeTaken });
     } catch (error) {
         console.error('Error during normal search:', error);
-        res.status(500).json({error: error.message });
+        res.status(500).json({error: error.code });
     }
 }
 

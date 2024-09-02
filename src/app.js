@@ -5,7 +5,8 @@ const searchRoutes = require('./routes/searchRoutes');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3001', // Allow requests from this origin
+    // origin: 'http://localhost:3001', // Allow requests from this origin
+    origin: 'https://hybrid-search.netlify.app', // Allow requests from this origin
     methods: 'GET,POST',             // Allow these HTTP methods
     allowedHeaders: 'Content-Type'   // Allow these headers
 }));

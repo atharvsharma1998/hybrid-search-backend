@@ -53,6 +53,7 @@ const client = new Client({
         console.log('Elasticsearch response:', response);
 
         // console.log('Elasticsearch response:', JSON.stringify(response, null, 2));
+        console.log(`Time Taken: ${response.took}`);
     
         // Directly access `hits` from the response
         if (response.hits && response.hits.hits.length > 0) {
@@ -62,13 +63,12 @@ const client = new Client({
                 author: hit._source.author,
                 content: hit._source.content.map(content => content.text),
                 relevance: hit._score,
-                timeTaken: response.took
             }));
     
-            return { results };
+            return { results , timeTaken: response.took};
 
         } else {
-            return { results: [] }; // Return empty results with 0 time if no hits
+            return { results: [] , timeTaken: 0}; // Return empty results with 0 time if no hits
         }
     } catch (error) {
         console.error('Elasticsearch search error:', error);

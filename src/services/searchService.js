@@ -1,4 +1,3 @@
-const db = require('../utils/db');
 const { Client } = require('@elastic/elasticsearch');
 require('dotenv').config();
 

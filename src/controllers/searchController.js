@@ -15,12 +15,12 @@ const searchService = require('../services/searchService');
  * @param {Object} res - The response object used to send data back to the client.
  */
 async function search(req, res) {
+    console.log('calling search');
 
     const { query, vector } = req.body;
     console.log('calling search');
 
     try {
-        // Perform the hybrid search using the service
         const { results, timeTaken } = await searchService.hybridSearch(query, vector);
         res.status(200).json({ results, timeTaken });
     } catch (error) {

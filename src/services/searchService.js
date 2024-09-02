@@ -88,7 +88,7 @@ const client = new Client({
             return { results: [] , timeTaken: 0}; // Return empty results with 0 time if no hits
         }
     } catch (error) {
-        console.error('Elasticsearch search error:', error.id);
+        console.error('Elasticsearch search error:', error);
         throw error;    // throwing the error to the controller
     }
     
